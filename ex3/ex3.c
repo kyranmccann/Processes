@@ -10,6 +10,21 @@
 int main(void)
 {
     // Your code here
+    int child = fork();
+    if (child < 0)
+    {
+      printf("Nope. Fork failed\n");
+      exit(1);
+    }
+    else if (child == 0)
+    {
+      printf("Knock knock\n");
+    }
+    else
+    {
+      waitpid(child, NULL, 0);
+      printf(" Who's there?\n");
+    }
 
     return 0;
 }
