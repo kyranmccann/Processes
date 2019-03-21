@@ -19,13 +19,13 @@ int main(void)
     {
       printf("child start: %i \n", x);
       x = 50;
-      printf("child end: %i \n", x)
+      printf("child end: %i \n", x);
     }
     else
     {
       printf("parent start: %i \n", x);
       x = 60;
-      printf("parent end: %i \n", x)
+      printf("parent end: %i \n", x);
     }
 
     return 0;
