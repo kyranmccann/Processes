@@ -25,6 +25,7 @@ int main(void)
     }
     else
     {
+      wait(NULL);
       printf("parent\n");
     }
     return 0;
