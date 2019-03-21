@@ -25,7 +25,7 @@ int main(void)
     }
     else
     {
-      wait(NULL);
+      waitpid(rc, NULL, 0);;
       printf("parent\n");
     }
     return 0;
