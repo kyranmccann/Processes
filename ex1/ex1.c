@@ -13,7 +13,8 @@ int main(void)
     int child = fork();
     if (child < 0)
     {
-      printf("Nope fork failed.\n");
+      fprintf(stderr, "Nope fork failed.\n");
+      exit(1);
     }
     else if (child == 0)
     {
