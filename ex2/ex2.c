@@ -5,32 +5,38 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main(void)
 {
     // Your code here
-    FILE *txt = fopen("./text.txt", "r");
+    FILE *txt = fopen("./text.txt", "w");
     int child = fork();
 
      if (child < 0)
      {
-       printf("Nope. fork failed");
+       fprintf(stderr, "Nope. fork failed");
        exit(1);
      }
      else if (child == 0)
      {
-       txt = fopen("text.txt", "a");
-       fprintf(txt, "The truth is out there\n" );
-       fclose(txt);
+       char *str1 = "The truth is out there\n";
+       fwrite(str1, sizeof(char), strlen(str1), txt);
+       // txt = fopen("text.txt", "a");
+       // fprintf(txt, "The truth is out there\n" );
+       // fclose(txt);
        printf("child\n");
      }
      else
      {
-       txt = fopen("text.txt", "a");
-       fprintf(txt, "Shut up Mulder\n");
-       fclose(txt);
+       // txt = fopen("text.txt", "a");
+       // fprintf(txt, "Shut up Mulder\n");
+       // fclose(txt);
+       char *str2 = "Shut up Mulder\n";
+       fwrite(str2, sizeof(char), strlen(str2), txt);
        printf("parent\n");
      }
+     fclose(txt);
 
     return 0;
 }
