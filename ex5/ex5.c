@@ -43,7 +43,7 @@ int main(void)
     }
     else
     {
-      wait(NULL);
+      waitpid(rc, NULL, 0);;
       close(p[1]);
       printf("parent\n");
 
