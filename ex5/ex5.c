@@ -29,22 +29,29 @@ int main(void)
     if (rc < 0)
     {
       printf("Nope. Fork failed\n");
-      exit(1);
+      exit(2);
     }
     else if (rc == 0)
     {
-      for (int i = 0; i < 3; i++)
-      {
-        read(p[0], buf, MSGSIZE);
-        printf("%s \n", buf);
-      }
-    }
-    else
-    {
-      printf("parent\n");
+      printf("child writing\n");
+
       write(p[1], msg1, MSGSIZE);
       write(p[1], msg2, MSGSIZE);
       write(p[1], msg3, MSGSIZE);
+
+      printf("child done\n");
+    }
+    else
+    {
+      wait(NULL);
+      close(p[1]);
+      printf("parent\n");
+
+      while (read(p[0], buf, MSGSIZE) > 0)
+      {
+        printf("%s\n", buf);
+      }
+      printf("parent done\n");
     }
     return 0;
 }
